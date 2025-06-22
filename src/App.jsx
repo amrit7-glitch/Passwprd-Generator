@@ -31,10 +31,17 @@ function App() {
   }
 
   const copyPasswordToClipboard = useCallback(() => {
-    passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, 999);
-    window.navigator.clipboard.writeText(password)
-  }, [password])
+  passwordRef.current?.select();
+  passwordRef.current?.setSelectionRange(0, 999);
+  window.navigator.clipboard.writeText(password);
+  
+  // Small animation on copy
+  passwordRef.current.style.transform = "scale(1.05)";
+  setTimeout(() => {
+    passwordRef.current.style.transform = "scale(1)";
+  }, 150);
+}, [password])
+
 
   useEffect(() => {
     passwordGenerator()
